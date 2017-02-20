@@ -10,48 +10,50 @@ using FisherInsuranceAPI.Data;
 
 namespace FisherInsuranceAPI.Controllers
 {
-    [Route("api/customer/claims")]
-    public class ClaimsController : Controller
+    [Route("api/[controller]")]
+    public class QuotesController : Controller
     {
         private IMemoryStore db;
-        public ClaimsController(IMemoryStore repo)
+        public QuotesController(IMemoryStore repo)
         {
             db = repo;
         }
 
         // GET: api/values
+       
+
         [HttpGet]
-        public IActionResult GetClaims()
+        public IActionResult GetQuotes()
         {
-            return Ok(db.RetrieveAllClaims);
+            return Ok(db.RetrieveAllQuotes);
         }
 
-        // GET api/customer/claims/5
+        // GET api/quotes/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(db.RetrieveClaim(id));
+            return Ok(db.RetrieveQuote(id));
         }
 
-        // POST api/customer/claims
+        // POST api/quote
         [HttpPost]
-        public IActionResult Post([FromBody]Claim claim)
+        public IActionResult Post([FromBody]Quote quote)
         {
-            return Ok(db.CreateClaim(claim));
+            return Ok(db.CreateQuote(quote));
         }
 
-        // PUT api/customer/claims/id
+        // PUT api/quotes/id
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Claim claim)
+        public IActionResult Put(int id, [FromBody]Quote quote)
         {
-            return Ok(db.UpdateClaim(claim));
+            return Ok(db.UpdateQuote(quote));
         }
 
-        // DELETE  api/customer/claims/id
+        // DELETE api/quotes/id
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            db.DeleteClaim(id);
+            db.DeleteQuote(id);
             return Ok();
         }
     }
