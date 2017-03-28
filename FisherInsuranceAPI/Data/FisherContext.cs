@@ -4,10 +4,11 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using FisherInsuranceAPI.Models;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace FisherInsuranceAPI.Data
 {
-    public class FisherContext : DbContext
+   public class FisherContext : IdentityDbContext<ApplicationUser>
     {
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

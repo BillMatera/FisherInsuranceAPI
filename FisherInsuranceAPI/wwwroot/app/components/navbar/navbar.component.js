@@ -7,8 +7,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require('@angular/core');
 var NavBarComponent = (function () {
-    function NavBarComponent() {
+    function NavBarComponent(router, authService) {
+        this.router = router;
+        this.authService = authService;
     }
+    NavBarComponent.prototype.isActive = function (data) {
+        return this.router.isActive(this.router.createUrlTree(data), true);
+    };
+    NavBarComponent.prototype.logout = function () {
+        // logs out the user, then redirects him to Welcome View.  
+        if (this.authService.logout()) {
+            this.router.navigate([""]);
+        }
+        return false;
+    };
     NavBarComponent = __decorate([
         core_1.Component({
             selector: 'nav-bar',
